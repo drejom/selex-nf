@@ -145,7 +145,8 @@ process fastqc_merged {
 
 process fastaptamer_count {
     tag "$name"
-   
+    container "quay.io/biocontainers/seqkit:0.7.1--0"
+
     cpus 1
     memory 4.GB
     time '12h'
@@ -162,13 +163,14 @@ process fastaptamer_count {
 
     script:
     """
-    fastaptamer_count -i <(zcat $reads) -o ${name}.counts.fa > ${name}.log
+    perl $workflow.projectDir/bin/fastaptamer_count -i <(zcat $reads) -o ${name}.counts.fa > ${name}.log
     seqkit fx2tab ${name}.counts.fa >  ${name}.counts.tsv
     """
 }
 process fastaptamer_cluster {
     tag "$name"
-   
+    container "quay.io/biocontainers/seqkit:0.7.1--0"
+
     cpus 1
     memory 4.GB
     time '12h'
@@ -185,7 +187,7 @@ process fastaptamer_cluster {
 
     script:
     """
-    fastaptamer_cluster -d 2 -f 50 -i ${reads} -o ${name}.clusters.fa &> ${name}.clusters.log
+    perl $workflow.projectDir/bin/fastaptamer_cluster -d 2 -f 50 -i ${reads} -o ${name}.clusters.fa &> ${name}.clusters.log
     seqkit fx2tab ${name}.clusters.fa >  ${name}.clusters.tsv
     """
 }
