@@ -145,7 +145,6 @@ process fastqc_merged {
 
 process fastaptamer_count {
     tag "$name"
-    container "quay.io/biocontainers/seqkit:0.7.1--0"
 
     cpus 1
     memory 4.GB
@@ -169,8 +168,7 @@ process fastaptamer_count {
 }
 process fastaptamer_cluster {
     tag "$name"
-    container "quay.io/biocontainers/seqkit:0.7.1--0"
-
+    
     cpus 1
     memory 4.GB
     time '12h'
