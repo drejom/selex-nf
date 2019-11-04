@@ -37,7 +37,6 @@
 log.info "selex assembly - N F  ~  version 0.1"
 log.info "====================================="
 log.info "name                   : ${params.name}"
-log.info "genome                 : ${params.genome}"
 log.info "read pairs             : ${params.pairs}"
 log.info "MultiQC config         : ${params.multiqc_config}"
 log.info "output                 : ${params.output}"
